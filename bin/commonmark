@@ -10,7 +10,7 @@ var parseArgs = require('minimist');
 var args = process.argv.slice(2);
 var argv = parseArgs(args,
   {boolean: ["ast", "xml", "time", "smart",
-             "safe", "sourcepos", "help", "version"],
+             "safe", "sourcepos", "help", "version", "txt2"],
    string: ["_", "to", "t"],
    unknown: function(o) {
      if (/^-/.test(o)) {
@@ -27,7 +27,7 @@ var usage = function() {
     process.stdout.write("commonmark [options] [file..]\n\n" +
     "Convert CommonMark to HTML.  Files are concatenated before\n" +
     "parsing.  If no files are given, input is read from stdin.\n\n" +
-    "-t,--to FORMAT  Specify output format (xml, html, ast)\n" +
+    "-t,--to FORMAT  Specify output format (xml, html, ast, txt2)\n" +
     "--time          Produce timings for phases of parsing and rendering\n" +
     "--smart         Parse 'smart' punctuation\n" +
     "--safe          Omit raw HTML and potentially unsafe attributes\n" +
@@ -47,7 +47,8 @@ if (argv.version) {
 }
 
 var format = argv.to || argv.t || (argv.xml ? 'xml' :
-                                      (argv.ast ? 'ast' : 'html'));
+                                      (argv.ast ? 'ast' :
+                                      (argv.txt2 ? 'txt2' : 'html')));
 
 var options = {
   time: argv.time,
@@ -70,6 +71,8 @@ if (format === 'html') {
                    return util.inspect(node, null, 20, true) + '\n';
                  },
                  options: {} };
+} else if (format === 'txt2') {
+  renderer = new commonmark.Txt2Renderer(options);
 } else {
     process.stderr.write("Unknown format: " + format + "\n");
     process.exit(1);

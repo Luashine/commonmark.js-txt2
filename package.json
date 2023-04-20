@@ -35,6 +35,7 @@
     "pretest": "npm run build"
   },
   "dependencies": {
+    "commonmark": "^0.30.0",
     "entities": "~3.0.1",
     "mdurl": "~1.0.1",
     "minimist": "~1.2.5",
