@@ -10,11 +10,13 @@ from Markdown to the [TXT2 format](https://xgm.guru/p/xgm/txt2)**.
 	1. `npm install`
 	2. `bin/commonmark --to txt2 simple.txt` to view the output in console
 - Ordered list output is not correct for multi-level lists
-- ~~Added~~ Hacked to add strikethrough support (wontfix until this is added to the Commonmark standard aka NEVER)
+- ~~Added~~ Hacked to add strikethrough support (upstream's wontfix until this is added to the
+Commonmark standard aka NEVER)
 
 ## Goals
 
 **Required output formats:**
+
 1. TXT2
 2. BB-Code (Xenforo flavour)
 
@@ -47,7 +49,7 @@ to workaround the shortcomings.
 
 ## Sample
 
-Input file (Markdown):
+Input file `simple.md` (Markdown):
 
 ```markdown
 # This is top level header
@@ -89,7 +91,7 @@ This is a [link](https://wikipedia.org). Another <https://example.org>.
 The end!
 ```
 
-Output file (TXT2 markup):
+Output file `simple.txt2` (TXT2 markup):
 
 ```
 This is top level header
